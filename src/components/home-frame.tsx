@@ -53,23 +53,30 @@ const MATRIX_COLUMNS = [
 export default function HomeFrame({ children }: HomeFrameProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const heroAnimatedRef = useRef(false);
+  const [enableBackdropVideo, setEnableBackdropVideo] = useState(false);
   const [enableAmbientMotion, setEnableAmbientMotion] = useState(false);
 
   useEffect(() => {
-    const query = window.matchMedia(
+    const backdropVideoQuery = window.matchMedia(
+      "(prefers-reduced-motion: no-preference)",
+    );
+    const ambientQuery = window.matchMedia(
       "(min-width: 761px) and (prefers-reduced-motion: no-preference)",
     );
 
-    const updateAmbientMotion = (event?: MediaQueryListEvent) => {
-      setEnableAmbientMotion(event?.matches ?? query.matches);
+    const syncMotionPreferences = () => {
+      setEnableBackdropVideo(backdropVideoQuery.matches);
+      setEnableAmbientMotion(ambientQuery.matches);
     };
 
-    updateAmbientMotion();
+    syncMotionPreferences();
 
-    query.addEventListener("change", updateAmbientMotion);
+    backdropVideoQuery.addEventListener("change", syncMotionPreferences);
+    ambientQuery.addEventListener("change", syncMotionPreferences);
 
     return () => {
-      query.removeEventListener("change", updateAmbientMotion);
+      backdropVideoQuery.removeEventListener("change", syncMotionPreferences);
+      ambientQuery.removeEventListener("change", syncMotionPreferences);
     };
   }, []);
 
@@ -200,7 +207,7 @@ export default function HomeFrame({ children }: HomeFrameProps) {
     <div ref={rootRef} className="home-frame">
       <div className="hero-backdrop" aria-hidden="true">
         <div className="hero-backdrop__shadow" />
-        {enableAmbientMotion ? (
+        {enableBackdropVideo ? (
           <div className="hero-backdrop__media">
             <video
               className="hero-backdrop__video"

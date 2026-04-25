@@ -253,6 +253,7 @@ select {
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(4, 12, 8, 0.68);
+  background-clip: padding-box;
   backdrop-filter: blur(14px) saturate(1.2);
   box-shadow: var(--shadow-soft);
   transition:
@@ -351,17 +352,12 @@ select {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 100%),
     var(--surface);
+  background-clip: padding-box;
   box-shadow: var(--shadow-soft);
 }
 
 .panel::before {
-  content: "";
-  position: absolute;
-  inset: 0 auto auto 0;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, var(--accent) 0%, transparent 72%);
-  opacity: 0.54;
+  content: none;
 }
 
 .panel--nested {
@@ -378,7 +374,7 @@ select {
   margin-top: clamp(3.4rem, 9vw, 6rem);
   min-height: clamp(38rem, 84vh, 54rem);
   padding: clamp(1.5rem, 3vw, 2.2rem);
-  border-color: rgba(97, 255, 137, 0.18);
+  border-color: rgba(97, 255, 137, 0.06);
   background:
     linear-gradient(180deg, rgba(4, 14, 8, 0.24), rgba(2, 6, 4, 0.5)),
     rgba(2, 6, 4, 0.22);
@@ -422,86 +418,6 @@ select {
 .matrix-rain__column span:first-child,
 .page-atmosphere__column span:first-child {
   color: var(--accent-strong);
-}
-
-.hero-aurora,
-.page-atmosphere__aurora {
-  position: absolute;
-  inset: -4rem 6% auto 14%;
-  height: 32rem;
-  pointer-events: none;
-  z-index: 0;
-  filter: blur(42px);
-  opacity: 0.72;
-}
-
-.page-atmosphere__aurora {
-  inset: -4rem 2% auto 2%;
-  height: 36rem;
-  opacity: 0.9;
-}
-
-.hero-aurora::before,
-.hero-aurora::after,
-.page-atmosphere__aurora::before,
-.page-atmosphere__aurora::after {
-  content: none;
-}
-
-.hero-aurora__band,
-.page-atmosphere__band {
-  position: absolute;
-  border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    rgba(99, 255, 142, 0) 0%,
-    rgba(99, 255, 142, 0.42) 22%,
-    rgba(184, 255, 202, 0.18) 50%,
-    rgba(99, 255, 142, 0.34) 74%,
-    rgba(99, 255, 142, 0) 100%
-  );
-  mix-blend-mode: screen;
-  transform-origin: center;
-  animation: aurora-drift 16s cubic-bezier(0.22, 1, 0.36, 1) infinite alternate;
-}
-
-.hero-aurora__band--one,
-.page-atmosphere__band--one {
-  top: 7%;
-  left: 6%;
-  width: 62%;
-  height: 8rem;
-  animation-duration: 18s;
-}
-
-.hero-aurora__band--two,
-.page-atmosphere__band--two {
-  top: 22%;
-  right: 4%;
-  width: 56%;
-  height: 10rem;
-  animation-duration: 22s;
-  animation-delay: -8s;
-}
-
-.hero-aurora__band--three,
-.page-atmosphere__band--three {
-  top: 40%;
-  left: 18%;
-  width: 48%;
-  height: 7rem;
-  opacity: 0.65;
-  animation-duration: 20s;
-  animation-delay: -13s;
-}
-
-.hero-aurora__band--four,
-.hero-aurora__band--five,
-.hero-aurora__band--six,
-.page-atmosphere__band--four,
-.page-atmosphere__band--five,
-.page-atmosphere__band--six {
-  display: none;
 }
 
 .hero__grid {
@@ -571,7 +487,7 @@ select {
 }
 
 .hero .panel--nested {
-  border-color: rgba(97, 255, 137, 0.16);
+  border-color: rgba(97, 255, 137, 0.1);
   background:
     linear-gradient(180deg, rgba(97, 255, 137, 0.08), rgba(6, 15, 9, 0.6) 100%),
     rgba(5, 10, 7, 0.58);
@@ -697,6 +613,7 @@ select {
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent 100%),
     rgba(8, 10, 12, 0.74);
+  background-clip: padding-box;
 }
 
 .signal-card {
@@ -705,7 +622,7 @@ select {
 }
 
 .hero .signal-card {
-  border-color: rgba(97, 255, 137, 0.15);
+  border-color: rgba(97, 255, 137, 0.09);
   background:
     linear-gradient(180deg, rgba(97, 255, 137, 0.08), rgba(7, 12, 8, 0.64) 100%),
     rgba(5, 10, 7, 0.52);
@@ -874,20 +791,6 @@ select {
   outline: none;
 }
 
-@keyframes aurora-drift {
-  0% {
-    transform: translate3d(-2%, 0, 0) rotate(-10deg) scaleX(0.96);
-  }
-
-  50% {
-    transform: translate3d(3%, -4%, 0) rotate(4deg) scaleX(1.04);
-  }
-
-  100% {
-    transform: translate3d(-1%, 5%, 0) rotate(11deg) scaleX(0.98);
-  }
-}
-
 @keyframes rain {
   0% {
     transform: translateY(-12%);
@@ -957,10 +860,6 @@ select {
 
   body::after {
     opacity: 0.28;
-  }
-
-  .page-loader {
-    display: none;
   }
 
   .page-loader__label {
@@ -1262,13 +1161,6 @@ select {
   .matrix-rain,
   .page-atmosphere__matrix {
     display: none;
-  }
-
-  .hero-aurora,
-  .page-atmosphere__aurora {
-    inset: -1rem 0 auto 0;
-    height: 24rem;
-    opacity: 0.52;
   }
 
   .site-footer__inner {

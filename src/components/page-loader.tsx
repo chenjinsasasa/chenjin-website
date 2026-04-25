@@ -17,7 +17,6 @@ export default function PageLoader() {
   useGSAP(
     () => {
       const shouldSkipLoader =
-        window.matchMedia("(max-width: 760px)").matches ||
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const rootElement = rootRef.current;
       const labelElement = labelRef.current;
