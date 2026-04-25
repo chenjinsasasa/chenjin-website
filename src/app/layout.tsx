@@ -1,28 +1,12 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter, Playfair_Display } from "next/font/google";
+import { jetBrainsMono } from "@/app/fonts";
+import PageLoader from "@/components/page-loader";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const playfairDisplay = Playfair_Display({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
-  style: ["normal", "italic"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "chenjin.ai",
+  title: "chenjin.ai | 陈锦与 AI 团队",
   description:
-    "陈锦的官方主站。展示个人方法、数字团队角色与 AI 协作结构。",
+    "陈锦的 AI 协作主站。把需求、工程、验证组织成一条可运行的工作流。",
 };
 
 export default function RootLayout({
@@ -31,11 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="zh-CN"
-      className={`${inter.variable} ${playfairDisplay.variable} ${geistMono.variable}`}
-    >
-      <body>{children}</body>
+    <html lang="zh-CN" className={jetBrainsMono.variable}>
+      <body>
+        <PageLoader />
+        {children}
+      </body>
     </html>
   );
 }
