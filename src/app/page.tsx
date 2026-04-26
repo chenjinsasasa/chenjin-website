@@ -22,7 +22,7 @@ const personSchema = {
     "聚焦多 Agent 系统、产品方法论与 AI 工作流的独立开发者与作者。",
   url: "https://chenjin.ai",
   sameAs: [
-    "https://www.youtube.com/@Alchain",
+    "https://github.com/chenjinsasasa",
     "https://space.bilibili.com/14097567",
     "https://x.com/AlchainHust",
   ],
