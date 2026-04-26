@@ -20,8 +20,12 @@ export default function PageLoader() {
         window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       const rootElement = rootRef.current;
       const labelElement = labelRef.current;
+      const fallbackTimeout = window.setTimeout(() => {
+        setIsVisible(false);
+      }, 4200);
 
       if (shouldSkipLoader || !rootElement || !labelElement) {
+        window.clearTimeout(fallbackTimeout);
         setIsVisible(false);
         return;
       }
@@ -31,10 +35,12 @@ export default function PageLoader() {
           ease: "power2.out",
         },
         onComplete: () => {
+          window.clearTimeout(fallbackTimeout);
           setIsVisible(false);
         },
       });
 
+      gsap.set(rootElement, { opacity: 1 });
       gsap.set(labelElement, {
         opacity: 1,
         textContent: INITIAL_TEXT,
@@ -70,6 +76,10 @@ export default function PageLoader() {
           },
           "-=0.08",
         );
+
+      return () => {
+        window.clearTimeout(fallbackTimeout);
+      };
     },
     { scope: rootRef, dependencies: [], revertOnUpdate: true },
   );

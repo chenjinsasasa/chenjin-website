@@ -1,12 +1,39 @@
 import type { Metadata } from "next";
-import { jetBrainsMono } from "@/app/fonts";
 import PageLoader from "@/components/page-loader";
 import "./globals.css";
 
+const title = "陈锦 ChenJin — AI Native Coder | 陈锦";
+const description =
+  "陈锦的个人站点，聚焦多 Agent 系统、产品方法论与 AI 工作流。";
+
 export const metadata: Metadata = {
-  title: "chenjin.ai | 陈锦与 AI 团队",
-  description:
-    "陈锦的 AI 协作主站。把需求、工程、验证组织成一条可运行的工作流。",
+  metadataBase: new URL("https://chenjin.ai"),
+  title,
+  description,
+  alternates: {
+    types: {
+      "application/rss+xml": "https://chenjin.ai/feed.xml",
+    },
+  },
+  openGraph: {
+    title,
+    description,
+    siteName: "陈锦 ChenJin",
+    locale: "zh_CN",
+    type: "website",
+    images: [
+      {
+        url: "/images/og-default.png",
+        alt: "陈锦 ChenJin",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/images/og-default.png"],
+  },
 };
 
 export default function RootLayout({
@@ -15,7 +42,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN" className={jetBrainsMono.variable}>
+    <html lang="zh" className="scroll-smooth">
       <body>
         <PageLoader />
         {children}
