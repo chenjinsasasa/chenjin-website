@@ -566,6 +566,17 @@ export default function CinematicHome() {
           <span>— Work in Progress —</span>
           <span>Hunan, China</span>
         </div>
+        <div className="container site-footer__credit">
+          <span>网站的设计源于</span>
+          <a
+            href="https://www.huasheng.ai/"
+            target="_blank"
+            rel="noreferrer noopener"
+          >
+            huasheng.ai
+          </a>
+          <span>· 花叔</span>
+        </div>
       </footer>
     </div>
   );

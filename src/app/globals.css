@@ -1301,6 +1301,27 @@ img {
   text-transform: uppercase;
 }
 
+.site-footer__credit {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0 0 2.5rem;
+  color: rgba(242, 234, 220, 0.52);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.site-footer__credit a {
+  color: var(--gold);
+  transition: opacity var(--transition-base);
+}
+
+.site-footer__credit a:hover {
+  opacity: 0.82;
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(28px);
